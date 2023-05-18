@@ -1,0 +1,38 @@
+<header-component></header-component>
+
+<div class="form">
+    <label for="username"></label>
+    <input type="text" [(ngModel)]="user.usuario">
+
+</div>
+<div class="form">
+    <label for="correo"></label>
+    <input type="email" [(ngModel)]="user.correo">
+
+</div>
+<div class="form">
+    <label for="password"></label>
+    <input type="password" placeholder="password" [(ngModel)]="user.password" >
+
+</div>
+<button type="button" (click)="crearRegistro()">Ingresar</button>
+<button (click)="modificarRegistro()">Editar</button>
+
+<p>{{user.usuario}}</p>
+<p>{{user.correo}}</p>
+<p>{{user.password}}</p>
+<table border="1" *ngIf='monstrarRegistros(); else sinRegistros'>
+    <tr>
+        <td>Usuario</td>
+        <td>password</td>
+        <td>Correo</td>
+    </tr>
+    <tr *ngFor="let indice of usuarios">
+        <td>{{indice.usuario}}</td>
+        <td>{{indice.password}}</td>
+        <td>{{indice.correo}}</td>
+        <td><button (click)="borrarRegistro(indice.usuario)">Eliminar</button></td>
+        <td><button (click)="seleccionarUsuario(indice.usuario, indice.password, indice.correo)">Seleccionar</button></td>
+    </tr>
+</table>
+<ng-template #sinRegistros>No se ha registrado usuarios</ng-template>
